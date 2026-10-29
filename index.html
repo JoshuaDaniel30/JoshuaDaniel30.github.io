@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en" data-inline-video="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Joshua Daniel, gameplay programmer for Unreal Engine 5 and Unity. Combat, movement, enemy AI, UI and debugging existing projects.">
+<meta property="og:title" content="Joshua Daniel, Gameplay Programmer">
+<meta property="og:description" content="Joshua Daniel, gameplay programmer for Unreal Engine 5 and Unity. Combat, movement, enemy AI, UI and debugging existing projects.">
+<meta property="og:image" content="https://joshuadaniel30.github.io/img/e-aS8Z1T04k.jpg">
+<meta property="og:url" content="https://joshuadaniel30.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/avatar.jpg">
+<title>Joshua Daniel Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; each project is a row (video left, details right) that stacks on phones */
+:root {
+  --bg: #EDEFF2;
+  --surface: #FFFFFF;
+  --ink: #15181D;
+  --muted: #586070;
+  --line: #D2D6DD;
+  --accent: #9E5C00;
+  --accent-fill: #F2A516;
+  --on-accent: #1C1400;
+  --shadow: 0 1px 2px rgba(20, 24, 29, .06), 0 8px 24px rgba(20, 24, 29, .08);
+  --display: "Archivo", "Arial Black", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111317; --surface: #1A1D23; --ink: #ECEEF1; --muted: #9AA1AE; --line: #2B3039;
+    --accent: #F2B33D; --accent-fill: #F2A516; --on-accent: #1C1400;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111317; --surface: #1A1D23; --ink: #ECEEF1; --muted: #9AA1AE; --line: #2B3039;
+  --accent: #F2B33D; --accent-fill: #F2A516; --on-accent: #1C1400;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); font-stretch: 125%; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+
+/* ---------- top bar ---------- */
+.topbar { border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.topbar .who { font-family: var(--display); font-stretch: 112%; font-weight: 700; font-size: 15px; }
+.topbar nav { display: flex; gap: 20px; font-size: 14px; }
+.topbar nav a { color: var(--muted); text-decoration: none; }
+.topbar nav a:hover { color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero .wrap { padding-block: 56px 48px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
+.avatar { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-fill); }
+.hero h1 { font-size: clamp(34px, 5.6vw, 58px); font-weight: 850; line-height: 1.04; }
+.hero .pitch { margin-top: 16px; font-size: clamp(17px, 2vw, 19px); max-width: 62ch; }
+.facts { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+.fact {
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em;
+  padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted);
+  background: var(--surface);
+}
+.fact b { color: var(--ink); font-weight: 500; }
+
+/* ---------- sections ---------- */
+section { padding-block: 40px; }
+.sec-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.sec-head h2 { font-size: clamp(26px, 3.6vw, 36px); font-weight: 800; }
+.sec-head p { color: var(--muted); max-width: 62ch; }
+
+/* ---------- project rows ---------- */
+.projects { display: flex; flex-direction: column; gap: 48px; }
+.project { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.project > * { min-width: 0; }
+.project h3, .card h3 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 800; line-height: 1.15; }
+.spec { margin-top: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); letter-spacing: .03em; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.spec span { white-space: nowrap; }
+.spec span + span::before { content: "/"; margin-right: 14px; color: var(--line); }
+.roles { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.role { font-size: 12.5px; font-weight: 500; padding: 3px 10px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+.role.lead { background: var(--accent-fill); border-color: var(--accent-fill); color: var(--on-accent); }
+.desc { margin-top: 14px; max-width: 62ch; }
+.built-label { margin-top: 18px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.built { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.built li { position: relative; padding-left: 18px; font-size: 15px; }
+.built li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; background: var(--accent-fill); border-radius: 1px; }
+.links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; font-size: 14px;
+  padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: var(--surface);
+  transition: border-color .15s;
+}
+.btn:hover { border-color: var(--ink); }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* video thumbnails: open YouTube, or play inline on the hosted site */
+.thumb {
+  position: relative; display: block; border-radius: 12px; overflow: hidden; background: #000;
+  box-shadow: var(--shadow); aspect-ratio: 16 / 9; max-width: 100%;
+}
+.thumb img, .phone img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+.thumb:hover img { transform: scale(1.03); }
+.thumb iframe, .phone iframe { width: 100%; height: 100%; border: 0; display: block; }
+.play {
+  position: absolute; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px 7px 9px; border-radius: 999px; background: rgba(12, 14, 18, .78); color: #fff;
+  font: 500 13px/1 var(--body); backdrop-filter: blur(6px);
+}
+.play i { width: 22px; height: 22px; border-radius: 50%; background: #F2A516; display: grid; place-items: center; }
+.play i::after { content: ""; border-left: 8px solid #1C1400; border-top: 5px solid transparent; border-bottom: 5px solid transparent; margin-left: 2px; }
+
+/* ---------- professional work ---------- */
+.pro { display: flex; flex-direction: column; gap: 24px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+.card.split { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 32px; align-items: start; }
+.phones { display: flex; gap: 14px; }
+.phone {
+  position: relative; display: block; width: 168px; max-width: 100%; aspect-ratio: 9 / 16; border-radius: 20px; overflow: hidden;
+  border: 5px solid var(--ink); background: #000; box-shadow: var(--shadow);
+}
+.phone:hover img { transform: scale(1.04); }
+.phone .play { left: 50%; transform: translateX(-50%); bottom: 10px; white-space: nowrap; }
+.intro-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 32px; align-items: start; }
+.areas { margin-top: 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+.area { min-width: 0; padding-top: 12px; border-top: 2px solid var(--accent-fill); }
+.area h4 { margin: 0; font-family: var(--display); font-stretch: 112%; font-size: 15px; font-weight: 750; }
+.area p { margin-top: 6px; font-size: 14.5px; color: var(--muted); }
+.fix { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.fix-head {
+  display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+}
+.fix-head .ok { color: var(--accent); font-weight: 500; }
+.fix-body { margin: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; }
+.fix-body dt { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.fix-body dd { margin: 2px 0 0; }
+.proof { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- practice projects ---------- */
+.mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+.mini { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.mini h3 { font-size: 18px; font-weight: 750; font-stretch: 112%; }
+.mini p { font-size: 15px; color: var(--muted); }
+.mini .spec { margin-top: 0; }
+
+/* ---------- skills ---------- */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.skill { padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
+.skill h3 { font-family: var(--mono); font-stretch: 100%; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.skill p { margin-top: 8px; font-size: 15.5px; }
+.skill.learning h3 { color: var(--accent); }
+
+/* ---------- footer ---------- */
+footer { border-top: 1px solid var(--line); margin-top: 24px; }
+footer .wrap { padding-block: 40px 56px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+footer h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; }
+footer p { color: var(--muted); margin-top: 6px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .project, .intro-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .card.split { grid-template-columns: minmax(0, 1fr); }
+  .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 36px 32px; gap: 20px; }
+  .avatar { width: 84px; height: 84px; }
+  .card { padding: 20px; }
+  .phones { gap: 10px; }
+  .phone { width: calc(50% - 5px); }
+  .mini-grid, .skills, .areas { grid-template-columns: minmax(0, 1fr); }
+  .topbar nav { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="who">Joshua Daniel</span>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <img class="avatar" src="img/avatar.jpg" alt="Joshua Daniel">
+    <div>
+      <h1>Hi! I'm Joshua, a gameplay programmer for Unreal&nbsp;Engine&nbsp;5 and&nbsp;Unity.</h1>
+      <p class="pitch">I love tackling everything from combat and movement systems to enemy AI, UI and editor tools. I'm a skilled debugger, so I'm great at diagnosing and fixing troublesome bugs, and I can learn an existing codebase quickly, even one with no documentation.</p>
+      <div class="facts">
+        <span class="fact"><b>UE5</b> · Unity · C++ · Blueprints · C#</span>
+        <span class="fact">Upwork <b>Top Rated</b> · 100% Job Success</span>
+        <span class="fact">Philippines · UTC+8</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Professional work</span>
+        <h2>Client and studio work</h2>
+      </div>
+
+      <div class="pro">
+        <article class="card">
+          <div class="intro-grid">
+            <div>
+              <h3>UE5 MMO client</h3>
+              <div class="spec"><span>UNREAL ENGINE 5</span><span>C++ &amp; BLUEPRINTS</span><span>ATAVISM</span><span>240+ COMMITS</span></div>
+              <div class="roles"><span class="role lead">Gameplay, UI &amp; tools programmer</span></div>
+              <p class="desc">I joined this MMO in the middle of its development. Its Atavism backend plugin had been converted from Unity to Unreal, so a lot was already built but broken, with no documentation or onboarding. I learned the codebase on my own and ended up working on almost every part of the game client.</p>
+            </div>
+            <div class="fix" aria-label="Example fix">
+              <div class="fix-head"><span>Example fix</span><span class="ok">Resolved</span></div>
+              <dl class="fix-body">
+                <div><dt>SYMPTOM</dt><dd>Objects sometimes loaded into the wrong state for players.</dd></div>
+                <div><dt>CAUSE</dt><dd>New property updates were overwriting pending ones that hadn't been applied yet.</dd></div>
+                <div><dt>FIX</dt><dd>Changed how pending updates are cached in the object manager (C++) so none get lost.</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="built-label">What I built</div>
+          <div class="areas">
+            <div class="area"><h4>Gameplay</h4><p>Tab targeting, sticky targeting, click-to-move, crosshair target highlighting, client-side ability cast validation, directional damage indicators and damage numbers</p></div>
+            <div class="area"><h4>UI</h4><p>Item and ability tooltips, a reworked loot system with ground-item clustering, chat bubbles, auction and gear upgrade screens, load screens and settings</p></div>
+            <div class="area"><h4>Editor tools</h4><p>A map snapshot tool that bakes the minimap into tiles stitched together at runtime, replacing a live scene capture, and a one-stop editor window for setting up equipment displays</p></div>
+            <div class="area"><h4>Characters &amp; animation</h4><p>Character select avatar images, modular armor and hair, turn-in-place animations without root motion, and unified enemy animation Blueprints</p></div>
+            <div class="area"><h4>VFX</h4><p>Elemental weapon enchant effects in Niagara and an enchanted weapon glow</p></div>
+            <div class="area"><h4>Fixes</h4><p>Load screens that never closed, failed arena queue joins, equipment flicker, avatar capture race conditions, broken materials and packaging errors</p></div>
+          </div>
+        </article>
+
+        <article class="card split">
+          <div class="phones">
+            <a class="phone" data-yt="P727Wi0wJ3Y" href="https://www.youtube.com/watch?v=P727Wi0wJ3Y" target="_blank" rel="noopener" aria-label="Play Mob Control ad 1">
+              <img src="img/P727Wi0wJ3Y.jpg" alt="Mob Control ad: a cannon fires a crowd through multiplier gates on a stone bridge">
+              <span class="play"><i></i>Ad 1</span>
+            </a>
+            <a class="phone" data-yt="39IdKaI0LoU" href="https://www.youtube.com/watch?v=39IdKaI0LoU" target="_blank" rel="noopener" aria-label="Play Mob Control ad 2">
+              <img src="img/39IdKaI0LoU.jpg" alt="Mob Control ad: a laser bounces off multiplier targets on a city highway">
+              <span class="play"><i></i>Ad 2</span>
+            </a>
+          </div>
+          <div>
+            <h3>Playable &amp; video ads</h3>
+            <div class="spec"><span>UNITY</span><span>LUNA PLAYWORKS</span><span>MOBILE ADS</span></div>
+            <div class="roles"><span class="role lead">Unity developer</span></div>
+            <p class="desc">At a mobile ad studio, I built each ad's game mechanics from scratch in Unity, usually in 3 to 5 days, and up to 2 weeks for bigger ones like a Match-3 or a football free shot ad. These two Mob Control video ads are public.</p>
+            <ul class="built">
+              <li>Became the most knowledgeable Luna Playworks developer on the team within my first month</li>
+              <li>Created the template project our team used to start every new ad</li>
+              <li>Helped junior developers with their issues, since the team had no seniors</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Team projects</span>
+        <h2>Games I led or programmed</h2>
+        <p>Made with teams during my game development degree. All four are playable on itch.io.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project">
+          <a class="thumb" data-yt="e-aS8Z1T04k" href="https://www.youtube.com/watch?v=e-aS8Z1T04k" target="_blank" rel="noopener" aria-label="Play Anyo: Within These Walls gameplay video">
+            <img src="img/e-aS8Z1T04k.jpg" alt="Anyo: Within These Walls: two characters talk in a dialogue box above a night-time city street">
+            <span class="play"><i></i>Watch gameplay</span>
+          </a>
+          <div>
+            <h3>Anyo: Within These Walls</h3>
+            <div class="spec"><span>UNREAL ENGINE 5</span><span>TEAM OF 5</span><span>3 MONTHS</span></div>
+            <div class="roles"><span class="role lead">Lead programmer</span><span class="role">Lead designer</span><span class="role">Level designer</span><span class="role">Writer</span><span class="role">Project manager</span></div>
+            <p class="desc">The 3D makeover of our previous game, Anyo, where you shapeshift into creatures from Philippine mythology. We added RPG elements like stat distribution, plus elemental mechanics used in both combat and puzzles. I spearheaded this project, designing its mechanics and programming its core systems.</p>
+            <div class="built-label">Systems I worked on</div>
+            <ul class="built">
+              <li>Action combat with auto-combos, telegraphed attacks, input buffering, hit reactions, knockback and hit stun</li>
+              <li>Shapeshifting system that lets the player turn into enemies and use their attacks</li>
+              <li>Modular attacks that can be assigned to any character and buffed with elements</li>
+              <li>Elemental interactions, status effects and puzzles</li>
+              <li>Procedurally generated, customizable buildings for level design</li>
+              <li>Dialogue with Data Assets, enemy behavior trees and a dynamic camera</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://tidbits-co.itch.io/anyo-within-these-walls" target="_blank" rel="noopener">Play on itch.io</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <a class="thumb" data-yt="Qa4LOc8HxFA" href="https://www.youtube.com/watch?v=Qa4LOc8HxFA" target="_blank" rel="noopener" aria-label="Play Anyo gameplay video">
+            <img src="img/Qa4LOc8HxFA.jpg" alt="Anyo gameplay">
+            <span class="play"><i></i>Watch gameplay</span>
+          </a>
+          <div>
+            <h3>Anyo</h3>
+            <div class="spec"><span>UNREAL ENGINE 5</span><span>TEAM OF 5</span><span>3 MONTHS</span></div>
+            <div class="roles"><span class="role lead">Solo programmer</span><span class="role">Gameplay designer</span><span class="role">Project manager</span></div>
+            <p class="desc">A 2.5D action side-scroller where you fight and transform into creatures and deities from Philippine mythology. I programmed the game's systems and designed most of it as well.</p>
+            <div class="built-label">Systems I worked on</div>
+            <ul class="built">
+              <li>Action combat with auto-combos, stamina, input buffering, hit reactions, knockback and hit stun</li>
+              <li>Shapeshifting system that lets the player turn into enemies and use their attacks</li>
+              <li>Modular attacks that can be assigned to any character</li>
+              <li>Enemy behavior trees</li>
+              <li>Dialogue system that uses Data Assets</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://tidbits-co.itch.io/anyo" target="_blank" rel="noopener">Play on itch.io</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <a class="thumb" data-yt="fzHfTST_SZE" href="https://www.youtube.com/watch?v=fzHfTST_SZE" target="_blank" rel="noopener" aria-label="Play ApoCalypso gameplay video">
+            <img src="img/fzHfTST_SZE.jpg" alt="ApoCalypso title over a skyline of towers">
+            <span class="play"><i></i>Watch gameplay</span>
+          </a>
+          <div>
+            <h3>ApoCalypso</h3>
+            <div class="spec"><span>UNREAL ENGINE 5</span><span>TEAM OF 10</span><span>6 MONTHS</span></div>
+            <div class="roles"><span class="role lead">Programmer</span><span class="role">Level designer</span></div>
+            <p class="desc">A high-speed roller-skate platformer set in the distant future of Metro Manila. I joined in the latter half of development and mainly worked on fine-tuning player traversal, maintaining existing code and general troubleshooting. I also level designed the first 2 of the 3 main missions.</p>
+            <div class="built-label">Systems I worked on</div>
+            <ul class="built">
+              <li>Revamped movement feel, with speed broken down into "gears" with dynamic acceleration</li>
+              <li>Ledge climbing and wall running</li>
+              <li>New player animation states, like braking and wall jumping</li>
+              <li>Doors with customizable opening behaviors and a reusable toggleable object</li>
+              <li>Environmental hazards, boosters and dynamic footstep sounds</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://team-loonar.itch.io/apocalypso" target="_blank" rel="noopener">Play on itch.io</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <a class="thumb" data-yt="PqzB_td1EkQ" href="https://www.youtube.com/watch?v=PqzB_td1EkQ" target="_blank" rel="noopener" aria-label="Play Mister and Miss Info gameplay video">
+            <img src="img/PqzB_td1EkQ.jpg" alt="Mister and Miss Info gameplay">
+            <span class="play"><i></i>Watch gameplay</span>
+          </a>
+          <div>
+            <h3>Mister &amp; Miss Info</h3>
+            <div class="spec"><span>UNITY</span><span>TEAM OF 5</span><span>3 MONTHS</span></div>
+            <div class="roles"><span class="role lead">Lead programmer</span><span class="role">Gameplay designer</span><span class="role">Project manager</span></div>
+            <p class="desc">A point-and-click puzzle simulation that tests your ability to spot fake news online. You play as a moderator of a social media site, inspecting users' posts to keep the site factual. I programmed and designed most of the game's systems.</p>
+            <div class="built-label">Systems I worked on</div>
+            <ul class="built">
+              <li>CSV reader that creates post ScriptableObjects from a spreadsheet</li>
+              <li>Interactable text sections with a check for website policy violations</li>
+              <li>Fact-check feature and a reactive character</li>
+              <li>Reputation system where moderation choices affect NPCs and the whole site</li>
+              <li>Shop system</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://tidbits-co.itch.io/mr-and-miss-info" target="_blank" rel="noopener">Play on itch.io</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Practice projects</span>
+        <h2>Smaller builds</h2>
+      </div>
+      <div class="mini-grid">
+        <article class="mini">
+          <a class="thumb" data-yt="JI6a_RlDDUw" href="https://www.youtube.com/watch?v=JI6a_RlDDUw" target="_blank" rel="noopener" aria-label="Play the gesture survival game video">
+            <img src="img/JI6a_RlDDUw.jpg" alt="Gesture-based mobile survival game">
+            <span class="play"><i></i>Watch</span>
+          </a>
+          <h3>Gesture wave survival</h3>
+          <div class="spec"><span>UNITY</span><span>MOBILE</span></div>
+          <p>An endless wave survival game inspired by The World Ends With You. Touch gestures like tap, swipe, scratch and drawing shapes activate your abilities, and every wave deals random cards to upgrade or swap them.</p>
+        </article>
+        <article class="mini">
+          <a class="thumb" data-yt="iwLoKJWFaKk" href="https://www.youtube.com/watch?v=iwLoKJWFaKk" target="_blank" rel="noopener" aria-label="Play the monster-catching RPG video">
+            <img src="img/iwLoKJWFaKk.jpg" alt="Monster-catching RPG">
+            <span class="play"><i></i>Watch</span>
+          </a>
+          <h3>Monster-catching RPG</h3>
+          <div class="spec"><span>UNITY</span><span>POKÉMON CLONE</span></div>
+          <p>Wild and trainer battles, capturing, status effects, leveling and evolution, learnable moves, a bag system, a storage PC, shops, enterable buildings and ledge jumping.</p>
+        </article>
+        <article class="mini">
+          <a class="thumb" data-yt="imjseXy6pSE" href="https://www.youtube.com/watch?v=imjseXy6pSE" target="_blank" rel="noopener" aria-label="Play the tower defense game video">
+            <img src="img/imjseXy6pSE.jpg" alt="Tower defense game">
+            <span class="play"><i></i>Watch</span>
+          </a>
+          <h3>Tower defense</h3>
+          <div class="spec"><span>UNREAL ENGINE 4</span><span>C++ &amp; BLUEPRINTS</span></div>
+          <p>A simple tower defense game made with a mix of C++ and Blueprints.</p>
+        </article>
+        <article class="mini">
+          <a class="thumb" data-yt="k1n1sWVyOxA" href="https://www.youtube.com/watch?v=k1n1sWVyOxA" target="_blank" rel="noopener" aria-label="Play the swipe slasher video">
+            <img src="img/k1n1sWVyOxA.jpg" alt="Swipe slasher game">
+            <span class="play"><i></i>Watch</span>
+          </a>
+          <h3>Swipe slasher</h3>
+          <div class="spec"><span>UNITY</span><span>MOBILE</span></div>
+          <p>A clone of the mobile game Tower Slash, where you defeat enemies by swiping in the direction shown above their heads.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Skills</span>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3>Engines &amp; languages</h3><p>Unreal Engine 5 (and 4), Unity, C++, Blueprints, C#</p></div>
+        <div class="skill"><h3>Gameplay</h3><p>Combat and input buffering, targeting, movement and traversal, enemy AI with behavior trees</p></div>
+        <div class="skill"><h3>UI</h3><p>UMG tooltips, inventory and loot, HUD, menus, load screens and settings</p></div>
+        <div class="skill"><h3>Tools &amp; data</h3><p>Custom editor tools, Data Assets and Data Tables, ScriptableObjects, CSV import</p></div>
+        <div class="skill"><h3>Existing codebases</h3><p>Debugging code I didn't write, learning undocumented projects quickly, cleaning up messy Blueprints</p></div>
+        <div class="skill learning"><h3>Learning now</h3><p>Gameplay Ability System and UE5 networking</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h2>Want to work together?</h2>
+      <p>I take on contracts through Upwork.</p>
+    </div>
+    <a class="btn primary" href="https://www.upwork.com/freelancers/~01685f329d86a8cc23" target="_blank" rel="noopener">View my Upwork profile</a>
+  </div>
+</footer>
+
+<script>
+// On the hosted site, play videos inline instead of opening YouTube
+(function () {
+  if (document.documentElement.getAttribute('data-inline-video') !== 'on') return;
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[data-yt]');
+    if (!link || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    var box = document.createElement('div');
+    box.className = link.className;
+    var frame = document.createElement('iframe');
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0&playsinline=1';
+    frame.title = link.getAttribute('aria-label') || 'Video';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    box.appendChild(frame);
+    link.replaceWith(box);
+  });
+})();
+</script>
+
+</body>
+</html>
